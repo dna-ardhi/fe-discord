@@ -28,7 +28,7 @@ const login = (userDetails, Navigate) => async (dispatch) => {
     dispatch(notify(response?.exception?.response?.data));
   } else {
     const { userDetails } = response?.data;
-    localStorage.setItem('user', userDetails);
+    localStorage.setItem('user', JSON.stringify(userDetails));
 
     dispatch(setUserDetails(userDetails));
     Navigate('/dashboard');
@@ -43,7 +43,7 @@ const register = (userDetails, Navigate) => async (dispatch) => {
     dispatch(notify(response?.exception?.response?.data));
   } else {
     const { userDetails } = response?.data;
-    localStorage.setItem('user', userDetails);
+    localStorage.setItem('user', JSON.stringify(userDetails));
 
     dispatch(setUserDetails(userDetails));
     Navigate('/dashboard');

@@ -1,15 +1,12 @@
 import { Button } from '@mui/material';
 import React from 'react';
+import { logout } from '../helpers/auth';
 
 const Dashboard = () => {
-  const handleLogout = () => {
-    localStorage.removeItem('user');
-    window.location.reload();
-  };
   return (
     <>
       <div>Dashboard</div>
-      <Button onClick={handleLogout}>Logout</Button>
+      <Button onClick={logout}>Logout</Button>
     </>
   );
 };
