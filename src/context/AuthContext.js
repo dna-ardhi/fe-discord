@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { validateLoginForm } from '../helpers/validator';
+import { validateLoginForm, validateRegisterForm } from '../helpers/validator';
 
 const AuthContext = createContext();
 
@@ -13,20 +13,37 @@ export const AuthProvider = ({ children, type }) => {
   const [username, setUsername] = useState('');
   const [isValid, setIsValid] = useState(false);
 
+  const resetState = () => {
+    setEmail('');
+    setPassword('');
+    setUsername('');
+  };
+
   const handleLogin = () => {
     console.log('login', { email, password });
+    resetState();
+  };
+
+  const handleRegister = () => {
+    console.log('register', { email, username, password });
+    resetState();
   };
 
   const handlePushToRegister = () => {
     Navigate('/register', { state: { from: location } });
   };
 
+  const handlePushToLogin = () => {
+    Navigate('/login', { state: { from: location } });
+  };
+
   useEffect(() => {
     if (type === 'login') {
       setIsValid(validateLoginForm({ email, password }));
     } else if (type === 'register') {
+      setIsValid(validateRegisterForm({ username, email, password }));
     }
-  }, [email, password, setIsValid, type]);
+  }, [username, email, password, setIsValid, type]);
 
   const contextValue = {
     // getter
@@ -40,8 +57,10 @@ export const AuthProvider = ({ children, type }) => {
     setUsername,
     setIsValid,
     // Handler
+    handleRegister,
     handleLogin,
     handlePushToRegister,
+    handlePushToLogin,
   };
 
   return (
