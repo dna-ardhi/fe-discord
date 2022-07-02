@@ -6,6 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import store from './store';
+import AlertNotification from './components/AlertNotification';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -15,6 +16,7 @@ root.render(
     <Provider store={store}>
       <Router>
         <App />
+        <AlertNotification />
       </Router>
     </Provider>
   </React.StrictMode>
