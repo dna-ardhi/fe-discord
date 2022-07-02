@@ -13,7 +13,7 @@ const Label = styled('label')({
   textTransform: 'uppercase',
   fontWeight: '600',
   fontSize: '16px',
-  padding: '12px',
+  padding: '12px 0',
 });
 
 const Input = styled('input')({
