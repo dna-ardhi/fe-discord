@@ -1,32 +1,38 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { validateLoginForm, validateRegisterForm } from '../helpers/validator';
+import { getActions } from '../store/actions/authAction';
+import { useDispatch } from 'react-redux';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children, type }) => {
   const location = useLocation();
   const Navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { login, register } = getActions(dispatch);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [isValid, setIsValid] = useState(false);
 
-  const resetState = () => {
-    setEmail('');
-    setPassword('');
-    setUsername('');
-  };
-
   const handleLogin = () => {
-    console.log('login', { email, password });
-    resetState();
+    const userDetails = {
+      email,
+      password,
+    };
+    login(userDetails, Navigate);
   };
 
   const handleRegister = () => {
-    console.log('register', { email, username, password });
-    resetState();
+    const userDetails = {
+      email,
+      password,
+      username,
+    };
+    register(userDetails, Navigate);
   };
 
   const handlePushToRegister = () => {

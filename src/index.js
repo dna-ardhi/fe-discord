@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './App';
@@ -13,9 +13,9 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <Router>
         <App />
-      </BrowserRouter>
+      </Router>
     </Provider>
   </React.StrictMode>
 );

@@ -3,7 +3,7 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 const AuthRoute = () => {
   const location = useLocation();
-  const authToken = localStorage.getItem('auth-token');
+  const authToken = localStorage.getItem('user');
 
   return authToken ? (
     <Outlet />
