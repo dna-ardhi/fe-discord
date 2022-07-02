@@ -7,7 +7,7 @@ import InputForm from './InputForm';
 
 const Login = () => {
   return (
-    <AuthProvider>
+    <AuthProvider type='login'>
       <AuthBox>
         <Header />
         <InputForm />

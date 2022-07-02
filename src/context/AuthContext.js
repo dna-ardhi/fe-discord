@@ -1,9 +1,10 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { validateLoginForm } from '../helpers/validator';
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children, type }) => {
   const location = useLocation();
   const Navigate = useNavigate();
 
@@ -13,12 +14,19 @@ export const AuthProvider = ({ children }) => {
   const [isValid, setIsValid] = useState(false);
 
   const handleLogin = () => {
-    console.log({ email, password });
+    console.log('login', { email, password });
   };
 
   const handlePushToRegister = () => {
     Navigate('/register', { state: { from: location } });
   };
+
+  useEffect(() => {
+    if (type === 'login') {
+      setIsValid(validateLoginForm({ email, password }));
+    } else if (type === 'register') {
+    }
+  }, [email, password, setIsValid, type]);
 
   const contextValue = {
     // getter
