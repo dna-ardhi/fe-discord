@@ -5,12 +5,12 @@ import RedirectInfo from '../../../components/RedirectInfo';
 import AuthContext from '../../../context/AuthContext';
 
 const getFormInvalidMsg = () =>
-  'Enter correct e-mail address and password should contains between 6 and 12 characters';
+  'Username should contains between 3 and 12 characters, and password should contains between 6 and 12 characters. Also correct e-mail address should be provided';
 
-const getFormValidMsg = () => 'Press to log in!';
+const getFormValidMsg = () => 'Press to Register!';
 
 const Footer = () => {
-  const { isValid, handleLogin, handlePushToRegister } =
+  const { isValid, handleRegister, handlePushToLogin } =
     useContext(AuthContext);
   return (
     <>
@@ -19,16 +19,15 @@ const Footer = () => {
           <PrimaryButton
             additionalStyles={{ marginTop: '30px' }}
             disabled={!isValid}
-            onClick={handleLogin}>
-            Log in
+            onClick={handleRegister}>
+            Sign up
           </PrimaryButton>
         </div>
       </Tooltip>
       <RedirectInfo
-        startText='Need an account?'
         additionalStyles={{ marginTop: '8px' }}
-        redirectHandler={handlePushToRegister}>
-        Create an Account
+        redirectHandler={handlePushToLogin}>
+        Already have an account?
       </RedirectInfo>
     </>
   );

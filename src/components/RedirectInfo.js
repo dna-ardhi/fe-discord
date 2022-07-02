@@ -20,7 +20,7 @@ const RedirectInfo = ({
       variant='subtitle2'
       color='#72767d'
       style={additionalStyles ? additionalStyles : {}}>
-      {startText}
+      {startText && startText + ' '}
       <RedirectText onClick={redirectHandler}>{children}</RedirectText>
     </Typography>
   );
