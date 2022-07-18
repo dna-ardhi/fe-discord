@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
-import Dashboard from '../pages/Dashboard';
+import Dashboard from '../pages/dashboard';
 import NotFound from '../pages/NotFound';
 
 export const getPublicRoutes = () => [
