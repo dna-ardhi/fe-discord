@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '@mui/material';
+import { bool, func, node, object } from 'prop-types';
 
 const PrimaryButton = ({
   additionalStyles,
@@ -26,6 +27,13 @@ const PrimaryButton = ({
       {children}
     </Button>
   );
+};
+
+PrimaryButton.propTypes = {
+  children: node.isRequired,
+  disabled: bool,
+  onClick: func,
+  additionalStyles: object,
 };
 
 export default PrimaryButton;
