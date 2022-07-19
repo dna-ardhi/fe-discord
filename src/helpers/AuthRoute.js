@@ -2,6 +2,7 @@ import React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getActions } from '../store/actions/authAction';
+import { connectWithSocketServer } from '../rtc/socketConnection';
 
 const AuthRoute = ({ setUserDetails }) => {
   const location = useLocation();
@@ -9,6 +10,7 @@ const AuthRoute = ({ setUserDetails }) => {
 
   if (authToken) {
     setUserDetails(JSON.parse(authToken));
+    connectWithSocketServer();
   }
 
   return authToken ? (
