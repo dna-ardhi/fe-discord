@@ -15,19 +15,36 @@ const MainContainer = styled('div')({
 
 const DUMMY_FRIENDS = [
   {
-    id: 1,
+    _id: 1,
     username: 'Mark',
     isOnline: true,
   },
   {
-    id: 2,
+    _id: 2,
     username: 'Anna',
     isOnline: false,
   },
   {
-    id: 3,
+    _id: 3,
     username: 'Jhon',
     isOnline: false,
+  },
+];
+
+const DUMMY_FRIENDS_INVITATIONS = [
+  {
+    _id: 1,
+    senderId: {
+      username: 'Mark',
+      email: 'dummy@mail.com',
+    },
+  },
+  {
+    _id: 2,
+    senderId: {
+      username: 'Jhon',
+      email: 'jhon@mail.com',
+    },
   },
 ];
 
@@ -38,7 +55,7 @@ const FriendsSideBar = () => {
       <FriendsTitle>Private Message</FriendsTitle>
       <FriendsList data={DUMMY_FRIENDS} />
       <FriendsTitle>Invitations</FriendsTitle>
-      {/* <FriendsList data='Pending Invitations' /> */}
+      <FriendsList data={DUMMY_FRIENDS_INVITATIONS} type='invitations' />
     </MainContainer>
   );
 };
