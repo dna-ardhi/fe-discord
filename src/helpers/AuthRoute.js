@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { StrictMode, useEffect } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getActions } from '../store/actions/authAction';
@@ -17,7 +17,9 @@ const AuthRoute = ({ setUserDetails }) => {
   }, []);
 
   return authToken ? (
-    <Outlet />
+    <StrictMode>
+      <Outlet />
+    </StrictMode>
   ) : (
     <Navigate to='/login' state={{ from: location }} replace />
   );
