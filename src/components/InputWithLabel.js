@@ -1,5 +1,6 @@
 import React from 'react';
 import { styled } from '@mui/system';
+import { func, number, oneOf, oneOfType, string } from 'prop-types';
 
 const Wrapper = styled('div')({
   display: 'flex',
@@ -53,6 +54,38 @@ const InputWithLabel = ({
       />
     </Wrapper>
   );
+};
+
+InputWithLabel.propTypes = {
+  value: oneOfType([string, number]),
+  setValue: func,
+  label: string,
+  placeholder: string,
+  controllerId: string,
+  type: oneOf([
+    'button',
+    'checkbox',
+    'color',
+    'date',
+    'datetime-local',
+    'email',
+    'file',
+    'hidden',
+    'image',
+    'month',
+    'number',
+    'password',
+    'radio',
+    'range',
+    'reset',
+    'search',
+    'submit',
+    'tel',
+    'text',
+    'time',
+    'url',
+    'week',
+  ]),
 };
 
 export default InputWithLabel;
