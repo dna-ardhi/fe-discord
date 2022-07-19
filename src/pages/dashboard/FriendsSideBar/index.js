@@ -13,14 +13,32 @@ const MainContainer = styled('div')({
   backgroundColor: '#2f3136',
 });
 
+const DUMMY_FRIENDS = [
+  {
+    id: 1,
+    username: 'Mark',
+    isOnline: true,
+  },
+  {
+    id: 2,
+    username: 'Anna',
+    isOnline: false,
+  },
+  {
+    id: 3,
+    username: 'Jhon',
+    isOnline: false,
+  },
+];
+
 const FriendsSideBar = () => {
   return (
     <MainContainer>
       <AddFriendButton />
       <FriendsTitle>Private Message</FriendsTitle>
-      <FriendsList data='Friends' />
+      <FriendsList data={DUMMY_FRIENDS} />
       <FriendsTitle>Invitations</FriendsTitle>
-      <FriendsList data='Pending Invitations' />
+      {/* <FriendsList data='Pending Invitations' /> */}
     </MainContainer>
   );
 };
