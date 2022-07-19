@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getActions } from '../store/actions/authAction';
@@ -8,10 +8,13 @@ const AuthRoute = ({ setUserDetails }) => {
   const location = useLocation();
   const authToken = localStorage.getItem('user');
 
-  if (authToken) {
-    setUserDetails(JSON.parse(authToken));
-    connectWithSocketServer(JSON.parse(authToken));
-  }
+  useEffect(() => {
+    if (authToken) {
+      setUserDetails(JSON.parse(authToken));
+      connectWithSocketServer(JSON.parse(authToken));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return authToken ? (
     <Outlet />
