@@ -1,9 +1,15 @@
 import React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getActions } from '../store/actions/authAction';
 
-const AuthRoute = () => {
+const AuthRoute = ({ setUserDetails }) => {
   const location = useLocation();
   const authToken = localStorage.getItem('user');
+
+  if (authToken) {
+    setUserDetails(JSON.parse(authToken));
+  }
 
   return authToken ? (
     <Outlet />
@@ -12,4 +18,10 @@ const AuthRoute = () => {
   );
 };
 
-export default AuthRoute;
+const mapActionsToProps = (dispatch) => {
+  return {
+    ...getActions(dispatch),
+  };
+};
+
+export default connect(null, mapActionsToProps)(AuthRoute);
