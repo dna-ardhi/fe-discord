@@ -11,27 +11,26 @@ import { validateEmail } from '../../../helpers/validator';
 import InputWithLabel from '../../../components/InputWithLabel';
 import { bool, func } from 'prop-types';
 import PrimaryButton from '../../../components/PrimaryButton';
+import { connect } from 'react-redux';
+import { getActions } from '../../../store/actions/friendsAction';
 
-const AddFriendDialog = ({
-  isOpen,
-  close,
-  sendFriendInvitation = () => {},
-}) => {
-  const [mail, setMail] = useState('');
+const AddFriendDialog = ({ isOpen, close, sendFriendInvitations }) => {
+  const [email, setEmail] = useState('');
   const [isFormValid, setIsFormValid] = useState('');
 
   const handleSendInvitations = () => {
     // send friends request
+    sendFriendInvitations({ targetEmail: email }, handleCloseDialog);
   };
 
   const handleCloseDialog = () => {
     close();
-    setMail('');
+    setEmail('');
   };
 
   useEffect(() => {
-    setIsFormValid(validateEmail(mail));
-  }, [mail, setIsFormValid]);
+    setIsFormValid(validateEmail(email));
+  }, [email, setIsFormValid]);
 
   return (
     <>
@@ -41,18 +40,16 @@ const AddFriendDialog = ({
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <Typography>
-              Enter email address of friend which you would like to invite
-            </Typography>
-            <InputWithLabel
-              controllerId='emailInvitation'
-              label='mail'
-              value={mail}
-              setValue={setMail}
-              type='email'
-              placeholder='Enter email address'
-            />
+            Enter email address of friend which you would like to invite
           </DialogContentText>
+          <InputWithLabel
+            controllerId='emailInvitation'
+            label='email'
+            value={email}
+            setValue={setEmail}
+            type='email'
+            placeholder='Enter email address'
+          />
         </DialogContent>
         <DialogActions>
           <PrimaryButton
@@ -76,4 +73,10 @@ AddFriendDialog.propTypes = {
   close: func.isRequired,
 };
 
-export default AddFriendDialog;
+const mapActionToProps = (dispatch) => {
+  return {
+    ...getActions(dispatch),
+  };
+};
+
+export default connect(null, mapActionToProps)(AddFriendDialog);
