@@ -1,5 +1,8 @@
 import { styled } from '@mui/system';
 import React from 'react';
+import AddFriendButton from './AddFriendButton';
+import FriendsList from './FriendsList';
+import FriendsTitle from './FriendsTitle';
 
 const MainContainer = styled('div')({
   width: '224px',
@@ -11,7 +14,15 @@ const MainContainer = styled('div')({
 });
 
 const FriendsSideBar = () => {
-  return <MainContainer>FriendsSideBar</MainContainer>;
+  return (
+    <MainContainer>
+      <AddFriendButton />
+      <FriendsTitle>Private Message</FriendsTitle>
+      <FriendsList data='Friends' />
+      <FriendsTitle>Invitations</FriendsTitle>
+      <FriendsList data='Pending Invitations' />
+    </MainContainer>
+  );
 };
 
 export default FriendsSideBar;

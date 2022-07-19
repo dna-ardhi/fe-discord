@@ -16,7 +16,7 @@ const PrimaryButton = ({
         color: 'white',
         textTransform: 'none',
         fontSize: '16px',
-        fontWeight: 500,
+        fontWeight: 400,
         width: '100%',
         height: '40px',
       }}
