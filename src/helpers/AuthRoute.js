@@ -10,7 +10,7 @@ const AuthRoute = ({ setUserDetails }) => {
 
   if (authToken) {
     setUserDetails(JSON.parse(authToken));
-    connectWithSocketServer();
+    connectWithSocketServer(JSON.parse(authToken));
   }
 
   return authToken ? (
