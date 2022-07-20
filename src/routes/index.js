@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom';
-import Login from '../pages/auth/Login';
-import Register from '../pages/auth/Register';
-import Dashboard from '../pages/dashboard';
-import NotFound from '../pages/NotFound';
+import Login from '../views/auth/Login';
+import Register from '../views/auth/Register';
+import Dashboard from '../views/dashboard';
+import NotFound from '../views/NotFound';
 
 export const getPublicRoutes = () => [
   {

@@ -1,16 +1,12 @@
 import { Box, Tooltip, Typography } from '@mui/material';
 import { func, number, oneOfType, string } from 'prop-types';
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import Avatar from '../../../components/Avatar';
+import { getActions } from '../../../store/actions/friendsAction';
 import InvitationDecisionsButton from './InvitationDecisionsButton';
 
-const PendingInvitationsList = ({
-  id,
-  username,
-  email,
-  accept = () => {},
-  reject = () => {},
-}) => {
+const PendingInvitationsList = ({ id, username, email, accept, reject }) => {
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const handleAcceptInvitations = () => {
@@ -60,12 +56,18 @@ const PendingInvitationsList = ({
   );
 };
 
+const mapActionToProps = (dispatch) => {
+  return {
+    ...getActions(dispatch),
+  };
+};
+
 PendingInvitationsList.propTypes = {
   id: oneOfType([number, string]).isRequired,
   username: string.isRequired,
   email: string.isRequired,
-  accept: func,
-  reject: func,
+  accept: func.isRequired,
+  reject: func.isRequired,
 };
 
-export default PendingInvitationsList;
+export default connect(null, mapActionToProps)(PendingInvitationsList);
