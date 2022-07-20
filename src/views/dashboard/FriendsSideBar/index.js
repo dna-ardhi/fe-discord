@@ -14,30 +14,12 @@ const MainContainer = styled('div')({
   backgroundColor: '#2f3136',
 });
 
-const DUMMY_FRIENDS = [
-  {
-    _id: 1,
-    username: 'Mark',
-    isOnline: true,
-  },
-  {
-    _id: 2,
-    username: 'Anna',
-    isOnline: false,
-  },
-  {
-    _id: 3,
-    username: 'Jhon',
-    isOnline: false,
-  },
-];
-
-const FriendsSideBar = ({ pendingFriendsInvitations }) => {
+const FriendsSideBar = ({ pendingFriendsInvitations, friends }) => {
   return (
     <MainContainer>
       <AddFriendButton />
       <FriendsTitle>Private Message</FriendsTitle>
-      <FriendsList data={DUMMY_FRIENDS} />
+      <FriendsList data={friends} />
       <FriendsTitle>Invitations</FriendsTitle>
       <FriendsList data={pendingFriendsInvitations} type='invitations' />
     </MainContainer>

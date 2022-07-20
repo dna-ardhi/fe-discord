@@ -1,6 +1,9 @@
 import { io } from 'socket.io-client';
 import store from '../store';
-import { setPendingFriendInvitation } from '../store/actions/friendsAction';
+import {
+  setFriends,
+  setPendingFriendInvitation,
+} from '../store/actions/friendsAction';
 
 let socket = null;
 
@@ -20,6 +23,11 @@ export const connectWithSocketServer = (userDetails) => {
   socket.on('friend-invitation', (data) => {
     const { pendingInvitations } = data;
     store.dispatch(setPendingFriendInvitation(pendingInvitations));
-    console.log('pending Inv :', pendingInvitations);
+  });
+
+  socket.on('friend-list', (data) => {
+    const { friends } = data;
+    store.dispatch(setFriends(friends));
+    console.log('friends list :', friends);
   });
 };

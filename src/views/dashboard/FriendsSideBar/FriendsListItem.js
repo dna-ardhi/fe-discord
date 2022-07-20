@@ -39,6 +39,6 @@ const FriendsListItem = ({ id, username, isOnline }) => {
 FriendsListItem.propTypes = {
   id: oneOfType([number, string]).isRequired,
   username: string.isRequired,
-  isOnline: bool.isRequired,
+  isOnline: bool,
 };
 export default FriendsListItem;

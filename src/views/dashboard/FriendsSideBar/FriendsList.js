@@ -27,8 +27,8 @@ const FriendsList = ({ data, type = 'friends' }) => {
             return (
               <FriendsListItem
                 username={friend.username}
-                key={friend._id}
-                id={friend._id}
+                key={friend.id}
+                id={friend.id}
                 isOnline={friend.isOnline}
               />
             );
