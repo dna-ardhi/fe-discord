@@ -30,6 +30,13 @@ export const setFriends = (friends) => {
   };
 };
 
+export const setOnlineUsers = (onlineUsers) => {
+  return {
+    type: friendsActions.SET_ONLINE_USERS,
+    payload: onlineUsers,
+  };
+};
+
 const sendFriendInvitation = (data, closeDialogHandler) => async (dispatch) => {
   const response = await api.sendFriendInvitations(data);
 

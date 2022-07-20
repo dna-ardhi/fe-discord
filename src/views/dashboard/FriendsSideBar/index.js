@@ -14,12 +14,16 @@ const MainContainer = styled('div')({
   backgroundColor: '#2f3136',
 });
 
-const FriendsSideBar = ({ pendingFriendsInvitations, friends }) => {
+const FriendsSideBar = ({
+  pendingFriendsInvitations,
+  friends,
+  onlineUsers,
+}) => {
   return (
     <MainContainer>
       <AddFriendButton />
       <FriendsTitle>Private Message</FriendsTitle>
-      <FriendsList data={friends} />
+      <FriendsList data={friends} onlineUsers={onlineUsers} />
       <FriendsTitle>Invitations</FriendsTitle>
       <FriendsList data={pendingFriendsInvitations} type='invitations' />
     </MainContainer>

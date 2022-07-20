@@ -9,10 +9,18 @@ const MainContainer = styled('div')({
   width: '100%',
 });
 
-const FriendsList = ({ data, type = 'friends' }) => {
+const FriendsList = ({ data, onlineUsers, type = 'friends' }) => {
+  const checkOnlineUsers = (friends = [], onlineUsers = []) => {
+    friends.forEach((friend) => {
+      const isOnline = onlineUsers.find((user) => user.userId === friend.id);
+      friend.isOnline = !!isOnline;
+    });
+
+    return friends;
+  };
   return (
     <MainContainer>
-      {data.map((friend) => {
+      {checkOnlineUsers(data, onlineUsers).map((friend) => {
         switch (type) {
           case 'invitations':
             return (
@@ -40,6 +48,7 @@ const FriendsList = ({ data, type = 'friends' }) => {
 
 FriendsList.propTypes = {
   data: arrayOf(object).isRequired,
+  onlineUsers: arrayOf(object),
   type: oneOf(['friends', 'invitations']),
 };
 
