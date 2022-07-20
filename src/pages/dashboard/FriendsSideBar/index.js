@@ -3,6 +3,7 @@ import React from 'react';
 import AddFriendButton from './AddFriendButton';
 import FriendsList from './FriendsList';
 import FriendsTitle from './FriendsTitle';
+import { connect } from 'react-redux';
 
 const MainContainer = styled('div')({
   width: '224px',
@@ -31,33 +32,22 @@ const DUMMY_FRIENDS = [
   },
 ];
 
-const DUMMY_FRIENDS_INVITATIONS = [
-  {
-    _id: 1,
-    senderId: {
-      username: 'Mark',
-      email: 'dummy@mail.com',
-    },
-  },
-  {
-    _id: 2,
-    senderId: {
-      username: 'Jhon',
-      email: 'jhon@mail.com',
-    },
-  },
-];
-
-const FriendsSideBar = () => {
+const FriendsSideBar = ({ pendingFriendsInvitations }) => {
   return (
     <MainContainer>
       <AddFriendButton />
       <FriendsTitle>Private Message</FriendsTitle>
       <FriendsList data={DUMMY_FRIENDS} />
       <FriendsTitle>Invitations</FriendsTitle>
-      <FriendsList data={DUMMY_FRIENDS_INVITATIONS} type='invitations' />
+      <FriendsList data={pendingFriendsInvitations} type='invitations' />
     </MainContainer>
   );
 };
 
-export default FriendsSideBar;
+const mapStateToProps = ({ friends }) => {
+  return {
+    ...friends,
+  };
+};
+
+export default connect(mapStateToProps)(FriendsSideBar);

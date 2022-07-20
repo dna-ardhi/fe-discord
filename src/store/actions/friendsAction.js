@@ -14,6 +14,13 @@ export const getActions = (dispatch) => {
   };
 };
 
+export const setPendingFriendInvitation = (pendingInvitation) => {
+  return {
+    type: friendsActions.SET_PENDING_FRIENDS_INVITATIONS,
+    payload: pendingInvitation,
+  };
+};
+
 const sendFriendInvitation = (data, closeDialogHandler) => {
   return async (dispatch) => {
     const response = await apiSendFriendInvitations(data);

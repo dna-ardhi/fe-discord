@@ -1,5 +1,5 @@
 import { Box, Tooltip, Typography } from '@mui/material';
-import { func, number, string } from 'prop-types';
+import { func, number, oneOfType, string } from 'prop-types';
 import React, { useState } from 'react';
 import Avatar from '../../../components/Avatar';
 import InvitationDecisionsButton from './InvitationDecisionsButton';
@@ -35,7 +35,8 @@ const PendingInvitationsList = ({
             alignItems: 'center',
             justifyContent: 'space-between',
             cursor: 'pointer',
-          }}>
+          }}
+        >
           <Avatar username={username} />
           <Typography
             sx={{
@@ -44,7 +45,8 @@ const PendingInvitationsList = ({
               color: '#8e9297',
               flexGrow: 1,
             }}
-            variant='subtitle1'>
+            variant='subtitle1'
+          >
             {username}
           </Typography>
           <InvitationDecisionsButton
@@ -59,7 +61,7 @@ const PendingInvitationsList = ({
 };
 
 PendingInvitationsList.propTypes = {
-  id: number.isRequired,
+  id: oneOfType([number, string]).isRequired,
   username: string.isRequired,
   email: string.isRequired,
   accept: func,

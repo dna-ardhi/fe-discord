@@ -1,5 +1,5 @@
 import { Button, Typography } from '@mui/material';
-import { bool, number, string } from 'prop-types';
+import { bool, number, oneOfType, string } from 'prop-types';
 import React from 'react';
 import Avatar from '../../../components/Avatar';
 import OnlineIndicator from './OnlineIndicator';
@@ -17,7 +17,8 @@ const FriendsListItem = ({ id, username, isOnline }) => {
         textTransform: 'none',
         color: 'black',
         position: 'relative',
-      }}>
+      }}
+    >
       <Avatar username={username} />
       <Typography
         sx={{
@@ -26,7 +27,8 @@ const FriendsListItem = ({ id, username, isOnline }) => {
           color: '#8e9297',
         }}
         variant='subtitle1'
-        align='left'>
+        align='left'
+      >
         {username}
       </Typography>
       {isOnline && <OnlineIndicator />}
@@ -35,7 +37,7 @@ const FriendsListItem = ({ id, username, isOnline }) => {
 };
 
 FriendsListItem.propTypes = {
-  id: number,
+  id: oneOfType([number, string]).isRequired,
   username: string.isRequired,
   isOnline: bool.isRequired,
 };
