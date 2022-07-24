@@ -1,4 +1,5 @@
 import { io } from 'socket.io-client';
+import { updateDirectChatHistoryIfActive } from '../helpers/chats';
 import store from '../store';
 import {
   setFriends,
@@ -35,4 +36,16 @@ export const connectWithSocketServer = (userDetails) => {
     const { onlineUsers } = data;
     store.dispatch(setOnlineUsers(onlineUsers));
   });
+
+  socket.on('direct-chat-history', (data) => {
+    updateDirectChatHistoryIfActive(data);
+  });
+};
+
+export const sendDirectMessage = (data) => {
+  socket.emit('direct-message', data);
+};
+
+export const getDirectChatHistory = (data) => {
+  socket.emit('direct-chat-history', data);
 };

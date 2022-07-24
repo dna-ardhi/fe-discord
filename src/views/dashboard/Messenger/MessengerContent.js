@@ -1,6 +1,7 @@
 import { styled } from '@mui/system';
 import { shape, string } from 'prop-types';
 import React, { useEffect } from 'react';
+import { getDirectChatHistory } from '../../../rtc/socketConnection';
 import Messages from './Messages';
 import NewMessageInput from './NewMessageInput';
 
@@ -14,6 +15,7 @@ const MessengerContent = ({ chatDetails }) => {
      * TODO:
      * fetching chat history from specific userId
      */
+    getDirectChatHistory({ receiverUserId: chatDetails.id });
   }, [chatDetails]);
   return (
     <Wrapper>
