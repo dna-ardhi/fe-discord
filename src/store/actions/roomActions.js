@@ -24,3 +24,10 @@ export const setRoomDetails = (roomDetails) => {
     payload: roomDetails,
   };
 };
+
+export const setActiveRooms = (activeRooms) => {
+  return {
+    type: roomActions.SET_ACTIVE_ROOMS,
+    payload: activeRooms,
+  };
+};
