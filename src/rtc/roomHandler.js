@@ -20,7 +20,6 @@ export const updateActiveRoom = (data) => {
   const { activeRooms } = data;
   const friends = store.getState().friends.friends;
   const rooms = [];
-  console.log(activeRooms);
 
   activeRooms.forEach((room) => {
     friends.forEach((friend) => {
