@@ -20,6 +20,11 @@ const roomReducer = (state = initialState, action) => {
         ...state,
         ...payload,
       };
+    case roomActions.SET_ROOM_DETAILS:
+      return {
+        ...state,
+        roomDetails: payload,
+      };
     default:
       return state;
   }
