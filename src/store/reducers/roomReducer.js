@@ -1,3 +1,5 @@
+import { roomActions } from '../actions/roomActions';
+
 const initialState = {
   isInRoom: false,
   isRoomCreator: false,
@@ -11,8 +13,13 @@ const initialState = {
 };
 
 const roomReducer = (state = initialState, action) => {
-  const { type } = action;
+  const { type, payload } = action;
   switch (type) {
+    case roomActions.OPEN_ROOM:
+      return {
+        ...state,
+        ...payload,
+      };
     default:
       return state;
   }

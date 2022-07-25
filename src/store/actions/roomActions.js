@@ -7,3 +7,13 @@ export const roomActions = {
   SET_AUDIO_ONLY: 'ROOM.SET_AUDIO_ONLY',
   SET_SCREEN_SHARE_STREAM: 'ROOM.SET_SCREEN_SHARE_STREAM',
 };
+
+export const setOpenRoom = (isRoomCreator = false, isInRoom = false) => {
+  return {
+    type: roomActions.OPEN_ROOM,
+    payload: {
+      isRoomCreator,
+      isInRoom,
+    },
+  };
+};

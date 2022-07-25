@@ -3,7 +3,9 @@ import React from 'react';
 import AppBar from './AppBar';
 import Messenger from './Messenger';
 import FriendsSideBar from './FriendsSideBar';
-import SideBar from './sidebar/SideBar';
+import SideBar from './SideBar';
+import { connect } from 'react-redux';
+import Room from './Room';
 
 const Wrapper = styled('div')({
   width: '100%',
@@ -11,15 +13,20 @@ const Wrapper = styled('div')({
   display: 'flex',
 });
 
-const Dashboard = () => {
+const Dashboard = ({ isInRoom }) => {
   return (
     <Wrapper>
       <SideBar />
       <FriendsSideBar />
       <Messenger />
       <AppBar />
+      {isInRoom && <Room />}
     </Wrapper>
   );
 };
 
-export default Dashboard;
+const mapStateToProps = ({ room }) => ({
+  ...room,
+});
+
+export default connect(mapStateToProps)(Dashboard);
