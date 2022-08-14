@@ -17,9 +17,21 @@ const AvatarPreview = styled('div')({
 });
 
 const Avatar = ({ username, large }) => {
+  const generateAvatar = (name) => {
+    const words = name.split(' ');
+    let initialName = name.toUpperCase().substring(0, 2);
+
+    if (words.length > 1) {
+      initialName =
+        words[0].charAt(0).toUpperCase() + words[1].charAt(0).toUpperCase();
+    }
+
+    return initialName;
+  };
+
   return (
     <AvatarPreview style={large ? { height: '80px', width: '80px' } : {}}>
-      {username.toUpperCase().substring(0, 2)}
+      {generateAvatar(username)}
     </AvatarPreview>
   );
 };

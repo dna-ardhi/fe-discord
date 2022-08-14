@@ -3,7 +3,7 @@ import React from 'react';
 import AppBar from './AppBar';
 import Messenger from './Messenger';
 import FriendsSideBar from './FriendsSideBar';
-import SideBar from './SideBar';
+import SideBar from './Sidebar';
 import { connect } from 'react-redux';
 import Room from './Room';
 
