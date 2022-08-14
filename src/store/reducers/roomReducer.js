@@ -4,7 +4,7 @@ const initialState = {
   isInRoom: false,
   isRoomCreator: false,
   roomDetails: null,
-  activeRoom: [],
+  activeRooms: [],
   localStream: null,
   remoteStreams: [],
   audioOnly: false,
@@ -28,7 +28,7 @@ const roomReducer = (state = initialState, action) => {
     case roomActions.SET_ACTIVE_ROOMS:
       return {
         ...state,
-        activeRoom: payload,
+        activeRooms: payload,
       };
     default:
       return state;
