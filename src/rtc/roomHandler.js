@@ -6,19 +6,21 @@ import {
 } from '../store/actions/roomActions';
 import * as socketConnection from './socketConnection';
 
+const { dispatch, getState } = store;
+
 export const createNewRoom = () => {
-  store.dispatch(setOpenRoom(true, true));
+  dispatch(setOpenRoom(true, true));
   socketConnection.createNewRoom();
 };
 
 export const newRoomCreated = (data) => {
   const { roomDetails } = data;
-  store.dispatch(setRoomDetails(roomDetails));
+  dispatch(setRoomDetails(roomDetails));
 };
 
 export const updateActiveRoom = (data) => {
   const { activeRooms } = data;
-  const friends = store.getState().friends.friends;
+  const friends = getState().friends.friends;
   const rooms = [];
 
   activeRooms.forEach((room) => {
@@ -29,11 +31,11 @@ export const updateActiveRoom = (data) => {
     });
   });
 
-  store.dispatch(setActiveRooms(rooms));
+  dispatch(setActiveRooms(rooms));
 };
 
 export const joinRoom = (roomId) => {
-  store.dispatch(setRoomDetails({ roomId }));
-  store.dispatch(setOpenRoom(false, true));
+  dispatch(setRoomDetails({ roomId }));
+  dispatch(setOpenRoom(false, true));
   socketConnection.joinRoom({ roomId });
 };
